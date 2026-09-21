@@ -3,7 +3,7 @@ name: Publish package
 on:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 permissions:
   contents: read
@@ -35,7 +35,14 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Pack
+        run: |
+          rm -rf .publish
+          mkdir .publish
+          pnpm pack --pack-destination .publish
+          tar -tzf .publish/*.tgz | grep -q '^package/dist/'
+
       - name: Publish
-        run: pnpm publish --no-git-checks
+        run: npm publish .publish/*.tgz --registry=https://npm.pkg.github.com
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

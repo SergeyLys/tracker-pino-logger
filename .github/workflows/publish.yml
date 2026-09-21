@@ -40,7 +40,12 @@ jobs:
           rm -rf .publish
           mkdir .publish
           pnpm pack --pack-destination .publish
+          tar -tzf .publish/*.tgz
           tar -tzf .publish/*.tgz | grep -q '^package/dist/'
+          if tar -tzf .publish/*.tgz | grep -q '^package/node_modules/'; then
+            echo 'node_modules must not be included in the package tarball'
+            exit 1
+          fi
 
       - name: Publish
         run: npm publish .publish/*.tgz --registry=https://npm.pkg.github.com

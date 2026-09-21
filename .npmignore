@@ -1,0 +1,51 @@
+# Source
+src/
+test/
+tests/
+
+# TypeScript
+tsconfig.json
+tsconfig.build.json
+tsconfig.*.json
+*.tsbuildinfo
+
+# Development
+node_modules/
+coverage/
+.nyc_output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.github/
+.gitignore
+.gitattributes
+
+# CI / local config
+.env
+.env.*
+!.env.example
+
+# Tooling
+.prettierrc
+.prettierignore
+.eslintrc*
+eslint.config.*
+jest.config.*
+nest-cli.json
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

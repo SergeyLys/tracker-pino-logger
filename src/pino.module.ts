@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { LoggerModule as NestJsPinoModule } from 'nestjs-pino';
 import { PinoLoggerService } from './pino-logger.service';
+import { GrpcLoggingInterceptor } from './grpc-logger-interceptor';
 
 @Global()
 @Module({
@@ -25,7 +26,7 @@ import { PinoLoggerService } from './pino-logger.service';
       },
     }),
   ],
-  providers: [PinoLoggerService],
-  exports: [PinoLoggerService, NestJsPinoModule],
+  providers: [PinoLoggerService, GrpcLoggingInterceptor],
+  exports: [PinoLoggerService, NestJsPinoModule, GrpcLoggingInterceptor],
 })
 export class PinoLoggerModule {}
